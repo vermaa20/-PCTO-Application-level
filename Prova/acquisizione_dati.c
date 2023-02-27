@@ -17,11 +17,16 @@ int main(void)
         printf("\n Numero dati da inserire: ");
         scanf("%ld", &n);
     } while (n <= 0);
+    fprintf(fp, "DATA NUM:");
+    fprintf(fp, "\t");
+    fprintf(fp, "%ld", n);
      for (i = 0; i < n; i++) {
         printf("Dato: ");
         scanf("%d", &data);
 
-        fprintf(fp, "DATA NUM: %ld  - DATA:  %d\n", n, data);
+        fprintf(fp, "\nDATA:");
+        fprintf(fp, "\t");
+        fprintf(fp, "%d", data);
      }
  }
 
