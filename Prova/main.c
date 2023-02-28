@@ -5,10 +5,11 @@
 
 int main(void)
 {
- FILE *fp = fopen("dati.1", "r");
+ FILE *fp = fopen("log.v.2.0.txt", "r");
  char c;
  char tester[MAX];
  int i = 0, j = 0, prova = 0;
+ int l = 0;
 
  if (fp == NULL) {
  printf("File opening failed");
@@ -17,34 +18,43 @@ int main(void)
  }
  else {
     //printf("Data Length\n| Data Bytes (hex)\n|  |\n+  -+ -- -- -- -- -- -- --\n");
-    while (prova < 3) {
-        fscanf(fp, "%c", &c);
+    while (!feof(fp)) {
         for(i = 0; i < 4; i++){
-            tester[i] = c;
             fscanf(fp, "%c", &c);
+            tester[i] = c;
         }
         tester[i] = '\0';
-        if(strcmp(tester, "FILE") == 0){
+        if(strcmp(tester, "07DF") == 0){
             fscanf(fp, "%c", &c);
+            fscanf(fp, "%d", &l);
+            printf("%d ", l);
+            fscanf(fp, "%c", &c);
+            fscanf(fp, "%c", &c);
+
             j = 0;
-            while (j < 26) {
+
+            while (j < l * 2 + l - 1) {
                 fscanf(fp, "%c", &c);
                 printf("%c",c);
                 j++;
             }
-            prova++;
             printf("\n");
         }
 
         if(strcmp(tester, "07E8") == 0){
             fscanf(fp, "%c", &c);
+            fscanf(fp, "%d", &l);
+            printf("%d ", l);
+            fscanf(fp, "%c", &c);
+            fscanf(fp, "%c", &c);
+
             j = 0;
-            while (j < 26) {
+
+            while (j < l * 2 + l - 1) {
                 fscanf(fp, "%c", &c);
                 printf("%c",c);
                 j++;
             }
-            prova++;
             printf("\n");
         }
     }
