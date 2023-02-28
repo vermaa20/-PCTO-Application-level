@@ -3,37 +3,48 @@
 #include <string.h>
 #define MAX 4
 
-int main(void)
+void lettura()
 {
- FILE *fp = fopen("log.v.2.0.txt", "r");
+ FILE *fp = fopen("log.txt", "r");
  char c;
  char tester[MAX];
- int i = 0, j = 0, prova = 0;
- int l = 0;
+ int i = 0, j = 0, prova = 0, dim = 0, controlla = 0;
 
  if (fp == NULL) {
  printf("File opening failed");
 
- return EXIT_FAILURE;
  }
  else {
-    //printf("Data Length\n| Data Bytes (hex)\n|  |\n+  -+ -- -- -- -- -- -- --\n");
+    printf("ID(hex)");
+    printf("\n|    Data Length");
+    printf("\n|    |  Data Bytes");
+    printf("\n|    |  |");
+    printf("\n+--- + -+ -- -- -- -- -- -- --\n");
     while (!feof(fp)) {
-        for(i = 0; i < 4; i++){
+
+        if(controlla > 0) {
+            for(i = 0; i < 3; i++){
+                tester[i] = tester[i + 1];
+            }
             fscanf(fp, "%c", &c);
             tester[i] = c;
+        } else {
+            for(i = 0; i < 4; i++){
+                fscanf(fp, "%c", &c);
+                tester[i] = c;
+            }
+            controlla = 1;
         }
-        tester[i] = '\0';
         if(strcmp(tester, "07DF") == 0){
             fscanf(fp, "%c", &c);
-            fscanf(fp, "%d", &l);
-            printf("%d ", l);
+            fscanf(fp, "%d", &dim);
+            printf("%s ", tester);
+            printf("%d", dim);
             fscanf(fp, "%c", &c);
+            printf("%c", c);
             fscanf(fp, "%c", &c);
-
             j = 0;
-
-            while (j < l * 2 + l - 1) {
+            while (j < dim * 2 + dim - 1) {
                 fscanf(fp, "%c", &c);
                 printf("%c",c);
                 j++;
@@ -43,14 +54,14 @@ int main(void)
 
         if(strcmp(tester, "07E8") == 0){
             fscanf(fp, "%c", &c);
-            fscanf(fp, "%d", &l);
-            printf("%d ", l);
+            fscanf(fp, "%d", &dim);
+            printf("%s ", tester);
+            printf("%d", dim);
             fscanf(fp, "%c", &c);
+            printf("%c", c);
             fscanf(fp, "%c", &c);
-
             j = 0;
-
-            while (j < l * 2 + l - 1) {
+            while (j < dim * 2 + dim - 1) {
                 fscanf(fp, "%c", &c);
                 printf("%c",c);
                 j++;
@@ -62,5 +73,37 @@ int main(void)
 
  fclose(fp);
 
- return 0;
+}
+
+void scrittura()
+{
+ FILE *fp = fopen("info.xls", "w");
+ char c;
+ char tester[MAX];
+ int i = 0, j = 0, prova = 0, dim = 0, controlla = 0;
+
+ if (fp == NULL) {
+ printf("File opening failed");
+
+ }
+ else {
+    int x, y;
+	printf("Valore di x: ");
+	scanf("%d", &x);
+	fprintf(fp, "%d", x);
+	printf("Valore di y: ");
+	scanf("%d", &y);
+	fprintf(fp, "\t");
+	fprintf(fp, "%d", y);
+ }
+
+ fclose(fp);
+
+}
+
+
+int main(){
+	lettura ();
+	scrittura();
+	return 0;
 }
