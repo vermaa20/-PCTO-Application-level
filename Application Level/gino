@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int i = 0, u = 0, dec = 0, cent = 0, mig = 0;
+    char number[5];
+
+    for (i = 0; i < 10000; i++) {
+        if (i < 10) {
+            number[0] = i + 48;
+            number[1] = '\0';
+        } else if (i > 9 && i < 100) {
+            dec = (i / 10) + 48;
+            u = (i % 10) + 48;
+            number[0] = dec;
+            number[1] = u;
+            number[2] = '\0';
+        } else if (i > 99 && i < 1000) {
+            cent = (i / 100) + 48;
+            dec = (i / 10 % 10) + 48;
+            u = (i % 100 % 10) + 48;
+            number[0] = cent;
+            number[1] = dec;
+            number[2] = u;
+            number[3] = '\0';
+        } else if (i > 999 && i < 10000) {
+            mig = (i / 1000) + 48;
+            cent = (i / 100 % 10) + 48;
+            dec = (i / 10 % 10) + 48;
+            u = (i % 100 % 10) + 48;
+            number[0] = mig;
+            number[1] = cent;
+            number[2] = dec;
+            number[3] = u;
+            number[4] = '\0';
+        }
+
+        printf("\n%s %d", number, i);
+    }
+
+    return 0;
+}
