@@ -1,0 +1,139 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX 5
+
+int main()
+{
+ FILE *fp = fopen("log.txt", "r");
+ char c;
+ char tester[MAX];
+ int i = 0, j = 0, dim = 0, controlla = 0, count = 0;
+ int u = 0, dec = 0, cent = 0, mig = 0, indice = 0;
+ char number[5];
+ float offset = 0.0;
+
+
+ if (fp == NULL) {
+ printf("File opening failed");
+
+ }
+ else {
+    while (!feof(fp)) {
+        count++;
+        if (count < 10) {
+            number[0] = count + 48;
+            number[1] = ')';
+            number[2] = '\0';
+            indice = 2;
+        } else if (count > 9 && count < 100) {
+            dec = (count / 10) + 48;
+            u = (count % 10) + 48;
+            number[0] = dec;
+            number[1] = u;
+            number[2] = ')';
+            number[3] = '\0';
+            indice = 3;
+        } else if (count > 99 && count < 1000) {
+            cent = (count / 100) + 48;
+            dec = (count / 10 % 10) + 48;
+            u = (count % 100 % 10) + 48;
+            number[0] = cent;
+            number[1] = dec;
+            number[2] = u;
+            number[3] = ')';
+            number[4] = '\0';
+            indice = 4;
+        } else if (count > 999 && count < 10000) {
+            mig = (count / 1000) + 48;
+            cent = (count / 100 % 10) + 48;
+            dec = (count / 10 % 10) + 48;
+            u = (count % 100 % 10) + 48;
+            number[0] = mig;
+            number[1] = cent;
+            number[2] = dec;
+            number[3] = u;
+            number[4] = ')';
+            number[5] = '\0';
+            indice = 5;
+        }
+
+        if(controlla > 0) {
+            for(i = 0; i < indice - 1; i++){
+                tester[i] = tester[i + 1];
+            }
+            fscanf(fp, "%c", &c);
+            tester[i] = c;
+            tester[indice + 1] = '\0';
+        } else {
+            for(i = 0; i < indice; i++){
+                fscanf(fp, "%c", &c);
+                tester[i] = c;
+            }
+            tester[indice] = '\0';
+            controlla = 1;
+        }
+
+        if(strcmp(tester, number) == 0){
+            fscanf(fp, "%c", &c);
+            while (c == ' ')
+                fscanf(fp, "%c", &c);
+            fscanf(fp, "%f", &offset);
+
+            printf("%.1f", offset);
+        }
+
+
+        /*
+        if(controlla > 0) {
+            for(i = 0; i < 3; i++){
+                tester[i] = tester[i + 1];
+            }
+            fscanf(fp, "%c", &c);
+            tester[i] = c;
+        } else {
+            for(i = 0; i < 4; i++){
+                fscanf(fp, "%c", &c);
+                tester[i] = c;
+            }
+            controlla = 1;
+        }
+        if(strcmp(tester, "15F1") == 0){
+            for (i = 0; i < 6; i++)
+                fscanf(fp, "%c", &c);
+            fscanf(fp, "%d", &dim);
+            printf("%s ", tester);
+            printf("%d", dim);
+            fscanf(fp, "%c", &c);
+            printf("%c", c);
+            fscanf(fp, "%c", &c);
+            j = 0;
+            while (j < dim * 2 + dim - 1) {
+                fscanf(fp, "%c", &c);
+                printf("%c",c);
+                j++;
+            }
+            printf("\n");
+        }
+
+        if(strcmp(tester, "F115") == 0){
+            for (i = 0; i < 6; i++)
+                fscanf(fp, "%c", &c);
+            fscanf(fp, "%d", &dim);
+            printf("%s ", tester);
+            printf("%d", dim);
+            fscanf(fp, "%c", &c);
+            printf("%c", c);
+            fscanf(fp, "%c", &c);
+            j = 0;
+            while (j < dim * 2 + dim - 1) {
+                fscanf(fp, "%c", &c);
+                printf("%c",c);
+                j++;
+            }
+            printf("\n");
+            */
+        }
+    }
+    fclose(fp);
+ }
