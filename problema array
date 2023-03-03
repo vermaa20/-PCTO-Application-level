@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "utility.h"
+
+
+void caricaArray(int dim, float *vetA);
+void stampaArray(int dim, float *vetA);
+void calcola(int dim, float *vetA, float *vetB, float *vetC);
+
+int main(){
+//    int ymin = 0, *xMax, *yMax, *xmin;
+//	lettura ();
+//	ymin = scrittura(&xMax, &xmin, &yMax);
+//	printf("\n%d", ymin);
+//	printf("\n%d, %d, %d", xmin, xMax, yMax);
+//	bat(xMax, xmin, ymin, yMax);
+//	plot();
+
+
+    int dim = 4;
+
+    float vetA[MAX], vetB[MAX], vetC[MAX];
+
+    caricaArray(dim, vetA);
+    caricaArray(dim, vetB);
+
+    calcola(dim, vetA, vetB, vetC);
+
+    stampaArray(dim, vetC);
+
+
+
+	return 0;
+}
+
+
+void caricaArray(int dim, float *vetA)
+{
+    int i = 0;
+
+    for(i = 0; i < dim; i++)
+        vetA[i] = i+1;
+}
+
+void stampaArray(int dim, float *vetA)
+{
+    int i = 0;
+
+    for(i = 0; i < dim; i++)
+       printf("\n vetA[%d] = %f", i, vetA[i]);
+}
+
+void calcola(int dim, float *vetA, float *vetB, float *vetC)
+{
+    int i = 0;
+
+    for(i = 0; i < dim; i++)
+    {
+        vetC[i] = vetA[i] + vetB[i];
+    }
+
+}
