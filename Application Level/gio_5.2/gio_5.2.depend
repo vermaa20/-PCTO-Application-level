@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1677842198 source:c:\users\vermaa20\desktop\pcto\gio_5\gio_5.2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utility.h"
+
+1677838520 c:\users\vermaa20\desktop\pcto\gio_5\gio_5.2\utility.h
+
+1677842260 source:c:\users\vermaa20\desktop\pcto\gio_5\gio_5.2\utility.c
+	<stdio.h>
+	<string.h>
+
