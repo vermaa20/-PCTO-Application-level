@@ -1,0 +1,47 @@
+/*
+        if (count % 2 == 0) {
+            domrisp = 2;
+        } else {
+            domrisp = 1;
+        }
+
+        if(count < 10){
+           num[0] = count + 48;
+           num[1] = ')';
+           num[2] = '\0';
+           indice = 2;
+        }
+        else if(count > 9 && count < 100){
+            dec = (count / 10) + 48;
+            u = (count % 10) + 48;
+           num[0] = dec;
+           num[1] = u;
+           num[2] = ')';
+           num[3] = '\0';
+           indice = 3;
+        }
+        else if(count > 99 && count < 1000){
+            cent = (count / 100) + 48;
+            dec = (count / 10 % 10) + 48;
+            u = (count % 100 % 10) + 48;
+            num[0] = cent;
+            num[1] = dec;
+            num[2] = u;
+            num[3] = ')';
+            num[4] = '\0';
+            indice = 4;
+        }
+        else if(count > 999 && count < 10000){
+
+            mig = (count / 1000) + 48;
+            cent = (count / 100 % 100) + 48;
+            dec = (count / 10) + 48;
+            u = (count % 10) + 48;
+            num[0] = mig;
+            num[1] = cent;
+            num[2] = dec;
+            num[3] = u;
+            num[4] = ')';
+            num[5] = '\0';
+            indice = 5;
+        }*/
